@@ -1,4 +1,43 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# MyPortfolio
+
+This is a Next.js web application that includes user authentication via Google OAuth, profile management, dark mode, and more.
+
+## Features
+- User authentication with Google using NextAuth.
+- Users can edit their profile (name, surname, birthdate, address, phone, email).
+- Dark mode and light mode switch.
+- Integration with Supabase to store user profile data, including profile images.
+- Tailwind CSS for styling.
+- Automatic redirection to the login page if not authenticated.
+- Google profile picture storage in Supabase and retrieval on profile view.
+
+## Tech Stack
+- **Next.js**: React framework for building web applications.
+- **NextAuth.js**: For Google OAuth and session management.
+- **Supabase**: Postgres database and authentication provider.
+- **Tailwind CSS**: Utility-first CSS framework.
+- **Axios**: For making HTTP requests.
+- **Vercel**: Deployment platform for Next.js apps.
+
+## Project Structure
+```bash
+├── pages                  # Pages directory for Next.js routing
+│   ├── api                # API routes
+│   ├── profile            # Profile-related pages
+│   │   ├── index.js       # Profile page
+│   │   └── edit.js        # Edit Profile page
+│   ├── _app.js            # Main app entry file
+│   ├── index.js           # Home/landing page
+│   ├── login.js           # Login page
+├── styles                 # Global styles directory
+│   └── globals.css        # Global CSS
+├── utils                  # Utility functions and clients
+│   └── supabaseClient.js  # Supabase client initialization
+├── .env.local             # Environment variables file (local)
+├── next.config.mjs        # Next.js configuration
+├── tailwind.config.js     # Tailwind CSS configuration
+├── package.json           # NPM dependencies and scripts
+├── README.md              # Project documentation
 
 ## Getting Started
 
@@ -16,21 +55,3 @@ bun dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
