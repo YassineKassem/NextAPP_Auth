@@ -1,9 +1,9 @@
-import { useSession, signOut } from 'next-auth/react'; // Added signOut import
+import { useSession, signOut } from 'next-auth/react';
 import { useState, useEffect } from 'react';
 import { supabase } from '../../utils/supabaseClient';
-import axios from 'axios';  
-import { useRouter } from 'next/router'; 
-import Link from 'next/link'; 
+import axios from 'axios';
+import { useRouter } from 'next/router';
+import Link from 'next/link';
 import Image from 'next/image';
 
 // Custom hook for managing dark mode
@@ -29,14 +29,14 @@ const useDarkMode = () => {
 
 export default function EditProfile() {
   const { data: session, status } = useSession();
-  const router = useRouter(); 
-  const [theme, toggleTheme] = useDarkMode(); 
+  const router = useRouter();
+  const [theme, toggleTheme] = useDarkMode();
   const [profileData, setProfileData] = useState(null); // State to store fetched profile data
 
   // Sign-out handler
   const handleSignOut = () => {
     signOut({
-      callbackUrl: '/login',  // Redirect to login page after sign out
+      callbackUrl: '/login', // Redirect to login page after sign out
     });
   };
 
@@ -46,8 +46,8 @@ export default function EditProfile() {
     birthdate: '',
     address: '',
     phone: '',
-    email: '',  
-    google_id: '', 
+    email: '',
+    google_id: '',
     image_url: '', // Field to store image URL
   });
 
@@ -78,7 +78,7 @@ export default function EditProfile() {
             birthdate: data?.birthdate || '',
             address: data?.address || '',
             phone: data?.phone || '',
-            email: data?.email || session.user.email || '', 
+            email: data?.email || session.user.email || '',
             google_id: data?.google_id || googleId,
             image_url: data?.image_url || 'https://via.placeholder.com/150', // Default to placeholder if no image found
           });
@@ -86,7 +86,7 @@ export default function EditProfile() {
           setProfileData(data); // Store fetched profile data
           setLoading(false);
         } catch (err) {
-          console.error("Unexpected error fetching profile:", err);
+          console.error('Unexpected error fetching profile:', err);
           setLoading(false);
         }
       };
@@ -104,7 +104,7 @@ export default function EditProfile() {
 
   const validateForm = () => {
     const newErrors = {};
-    
+
     if (!formData.name.trim()) newErrors.name = 'Name is required';
     if (!formData.surname.trim()) newErrors.surname = 'Surname is required';
     if (!formData.birthdate) newErrors.birthdate = 'Birthdate is required';
@@ -112,7 +112,7 @@ export default function EditProfile() {
     if (!formData.phone.trim()) newErrors.phone = 'Phone number is required';
 
     setErrors(newErrors);
-    return Object.keys(newErrors).length === 0; 
+    return Object.keys(newErrors).length === 0; // Return true if no errors
   };
 
   const getDistanceFromParis = (lat, lng) => {
@@ -124,10 +124,11 @@ export default function EditProfile() {
     const dLat = degreesToRadians(lat - parisCoords.lat);
     const dLon = degreesToRadians(lng - parisCoords.lng);
 
-    const a = Math.sin(dLat / 2) * Math.sin(dLat / 2) +
-              Math.cos(degreesToRadians(parisCoords.lat)) *
-              Math.cos(degreesToRadians(lat)) *
-              Math.sin(dLon / 2) * Math.sin(dLon / 2);
+    const a =
+      Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+      Math.cos(degreesToRadians(parisCoords.lat)) *
+        Math.cos(degreesToRadians(lat)) *
+        Math.sin(dLon / 2) * Math.sin(dLon / 2);
 
     const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
     return earthRadiusKm * c;
@@ -162,14 +163,14 @@ export default function EditProfile() {
     e.preventDefault();
 
     if (!validateForm()) {
-      return; 
+      return;
     }
 
     const googleId = formData.google_id;
 
     const isValidAddress = await validateAddress(formData.address);
     if (!isValidAddress) {
-      return; 
+      return;
     }
 
     const { error } = await supabase
@@ -188,7 +189,7 @@ export default function EditProfile() {
       console.error('Error updating profile:', error.message);
     } else {
       alert('Profile updated successfully');
-      router.push('/profile');  
+      router.push('/profile');
     }
   };
 
@@ -202,11 +203,12 @@ export default function EditProfile() {
       <header className="bg-white dark:bg-gray-900 shadow-md">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
           <div className="flex items-center">
-          <Image
+            <Image
               src={profileData?.image_url || 'https://via.placeholder.com/150'} // Use the fetched image URL from the database
               alt="Profile Picture"
               width={50}
-              height={50}/>
+              height={50}
+            />
 
             <span className="ml-4 text-2xl font-bold text-gray-900 dark:text-white">
               MyPortfolio
@@ -219,12 +221,9 @@ export default function EditProfile() {
             <Link href="/profile/edit" className="text-gray-700 hover:text-blue-500 dark:text-white">
               Edit Profile
             </Link>
-            
+
             {/* Dark Mode Toggle */}
-            <button
-              onClick={toggleTheme}
-              className="ml-4 text-gray-700 dark:text-white"
-            >
+            <button onClick={toggleTheme} className="ml-4 text-gray-700 dark:text-white">
               {theme === 'light' ? '🌙 Dark Mode' : '☀️ Light Mode'}
             </button>
 
@@ -244,7 +243,9 @@ export default function EditProfile() {
       {/* Main Content */}
       <div className="flex items-center justify-center min-h-screen bg-gray-100 dark:bg-gray-800">
         <div className="bg-white dark:bg-gray-900 p-8 rounded-lg shadow-lg w-full max-w-md">
-          <h1 className="text-2xl font-bold mb-6 text-center text-gray-900 dark:text-white">Edit Profile</h1>
+          <h1 className="text-2xl font-bold mb-6 text-center text-gray-900 dark:text-white">
+            Edit Profile
+          </h1>
           <form onSubmit={handleSubmit}>
             <div className="mb-4">
               <label className="block text-gray-700 dark:text-white">Name</label>

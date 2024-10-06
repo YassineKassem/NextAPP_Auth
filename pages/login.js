@@ -11,7 +11,7 @@ export default function Login() {
     if (session) {
       router.push('/profile');
     }
-  }, [session]);
+  }, [session, router]);  // Added 'router' here
 
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-100">
