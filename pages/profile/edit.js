@@ -4,6 +4,7 @@ import { supabase } from '../../utils/supabaseClient';
 import axios from 'axios';  
 import { useRouter } from 'next/router'; 
 import Link from 'next/link'; 
+import Image from 'next/image';
 
 // Custom hook for managing dark mode
 const useDarkMode = () => {
@@ -201,11 +202,12 @@ export default function EditProfile() {
       <header className="bg-white dark:bg-gray-900 shadow-md">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
           <div className="flex items-center">
-            <img
-              className="h-10 w-auto"
+          <Image
               src={profileData?.image_url || 'https://via.placeholder.com/150'} // Use the fetched image URL from the database
-              alt="Logo"
-            />
+              alt="Profile Picture"
+              width={50}
+              height={50}/>
+
             <span className="ml-4 text-2xl font-bold text-gray-900 dark:text-white">
               MyPortfolio
             </span>

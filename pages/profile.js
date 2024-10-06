@@ -1,8 +1,8 @@
 import { useSession, signOut } from 'next-auth/react';
 import Link from 'next/link';
-import { useRouter } from 'next/router';
 import { useState, useEffect } from 'react';
 import { supabase } from '../utils/supabaseClient'; // Ensure correct path
+import Image from 'next/image';
 
 // Custom hook for managing dark mode (remains the same)
 const useDarkMode = () => {
@@ -27,7 +27,6 @@ const useDarkMode = () => {
 
 export default function Profile() {
   const { data: session } = useSession();
-  const router = useRouter();
   const [theme, toggleTheme] = useDarkMode(); // Manage dark mode
   const [profileData, setProfileData] = useState(null); // Store profile data
   const [loading, setLoading] = useState(true);
@@ -72,11 +71,13 @@ export default function Profile() {
       <header className="bg-white dark:bg-gray-900 shadow-md">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
           <div className="flex items-center">
-            <img
-              className="h-10 w-auto"
+            <Image
               src={profileData?.image_url || 'https://via.placeholder.com/150'} // Use image_url from database
-              alt="Logo"
+              alt="Profile Picture"
+              width={50}
+              height={50}
             />
+            
             <span className="ml-4 text-2xl font-bold text-gray-900 dark:text-white">
               MyPortfolio
             </span>
@@ -110,10 +111,12 @@ export default function Profile() {
       <main className="flex flex-col items-center py-12 px-4 sm:px-6 lg:px-8">
         {/* Avatar Section */}
         <div className="w-40 h-40 rounded-full overflow-hidden bg-blue-100 dark:bg-blue-900">
-          <img
+          <Image
             className="w-full h-full object-cover"
             src={profileData?.image_url || 'https://via.placeholder.com/150'} // Use the image URL from the database
             alt="Profile Picture"
+            width={200}
+            height={200}
           />
         </div>
 
@@ -123,10 +126,10 @@ export default function Profile() {
             Hey! <span role="img" aria-label="wave">👋</span>
           </h1>
           <h2 className="text-2xl font-bold text-gray-700 dark:text-gray-300 mt-4">
-            My name is {profileData?.name || 'User'} and I'm a Full Stack Developer
+            My name is {profileData?.name || 'User'} and I&apos;m a Full Stack Developer
           </h2>
           <p className="mt-4 text-gray-600 dark:text-gray-400 max-w-2xl">
-            This is my digital space where I write about the things I'm working on and share what I've learned.
+            This is my digital space where I write about the things I&apos;m working on and share what I&apos;ve learned.
           </p>
         </div>
       </main>
