@@ -1,0 +1,15 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* globals.css */
+body {
+    @apply bg-gray-100 text-gray-900;
+  }
+  
+  body.dark {
+    @apply bg-gray-800 text-white;
+  }
+  
+  /* Other global styles... */
+  
