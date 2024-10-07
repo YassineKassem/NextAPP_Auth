@@ -23,12 +23,13 @@ This is a Next.js web application that includes user authentication via Google O
 ```bash
 ├── pages                  # Pages directory for Next.js routing
 │   ├── api                # API routes
-│   ├── profile            # Profile-related pages
-│   │   ├── index.js       # Profile page
+│   ├── profile            
 │   │   └── edit.js        # Edit Profile page
 │   ├── _app.js            # Main app entry file
 │   ├── index.js           # Home/landing page
 │   ├── login.js           # Login page
+|   |__ profile.js         # Profile page     
+|
 ├── styles                 # Global styles directory
 │   └── globals.css        # Global CSS
 ├── utils                  # Utility functions and clients
