@@ -1,9 +1,7 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-
 import { useSession, signOut } from 'next-auth/react';
 import { useState, useEffect } from 'react';
 import { supabase } from '../../utils/supabaseClient';
-import axios from 'axios';
+//import axios from 'axios';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
 import Image from 'next/image';
