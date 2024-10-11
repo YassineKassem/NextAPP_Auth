@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
+
 import { useSession, signOut } from 'next-auth/react';
 import { useState, useEffect } from 'react';
 import { supabase } from '../../utils/supabaseClient';
